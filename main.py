@@ -4,7 +4,9 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QPen, QFont, QColor
 from PyQt5.QtWidgets import QPushButton, QWidget, QLabel, QLineEdit, QApplication
 
-SCREEN_SIZE = [400, 500]
+from random import randint
+
+SCREEN_SIZE = [400, 400]
 SIDE_LENGTH = 200
 SIDES_COUNT = 5
 
@@ -36,10 +38,13 @@ class DrawStar(QWidget):
             qp.end()
 
     def draw_squares(self, qp):
-        pen = QPen(Qt.red, 2)
+        pen = QPen(Qt.yellow, 2)
         qp.setPen(pen)
-        qp.setBrush(QColor(255, 255, 0))
-        qp.drawEllipse(20, 20, 100, 100)
+        for i in range(5):
+            r = randint(10, 100)
+            x = randint(r, SCREEN_SIZE[0] - r)
+            y = randint(r, SCREEN_SIZE[1] - r)
+            qp.drawEllipse(x, y, r, r)
 
 
 if __name__ == '__main__':
